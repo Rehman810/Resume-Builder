@@ -9,7 +9,15 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="resume-container">
+    <header>
+      <button id="toggle-form">
+        Create Resume
+      </button>
+    </header>
+
+    <div
+      class="resume-container"
+      id="resume-container">
       <!-- Personal Information -->
       <section class="personal-info">
         <img
@@ -21,23 +29,25 @@
           Email: abdulrehmanwaseem103@gmail.com |
           Phone: +92 3062055472
         </p>
-
         <!-- Social Links -->
         <div class="social-links">
           <a
             href="https://github.com/Rehman810"
+            id="github-link"
             target="_blank"
             >GitHub</a
           >
           |
           <a
             href="https://www.linkedin.com/in/abdul-rehman-waseem-7138031b5"
+            id="linkedin-link"
             target="_blank"
             >LinkedIn</a
           >
           |
           <a
             href="https://abdulrehman810-portfolio.netlify.app/"
+            id="portfolio-link"
             target="_blank"
             >Portfolio</a
           >
@@ -89,6 +99,122 @@
         </ul>
       </section>
     </div>
+
+    <section
+      class="form-section"
+      id="form-section"
+      style="display: none">
+      <h2>Build Your Resume</h2>
+      <form id="resume-form">
+        <!-- Personal Information -->
+        <div class="form-group">
+          <label for="form-name">Full Name</label>
+          <input
+            type="text"
+            id="form-name"
+            placeholder="Enter your full name"
+            required />
+        </div>
+
+        <div class="form-group">
+          <label for="form-email">Email</label>
+          <input
+            type="email"
+            id="form-email"
+            placeholder="Enter your email"
+            required />
+        </div>
+
+        <!-- Social Links -->
+        <div class="form-group">
+          <label for="form-github"
+            >GitHub Link</label
+          >
+          <input
+            type="text"
+            id="form-github"
+            placeholder="Enter your GitHub profile URL" />
+        </div>
+
+        <div class="form-group">
+          <label for="form-linkedin"
+            >LinkedIn Link</label
+          >
+          <input
+            type="text"
+            id="form-linkedin"
+            placeholder="Enter your LinkedIn profile URL" />
+        </div>
+
+        <div class="form-group">
+          <label for="form-portfolio"
+            >Portfolio Link</label
+          >
+          <input
+            type="text"
+            id="form-portfolio"
+            placeholder="Enter your portfolio URL" />
+        </div>
+
+        <!-- Education -->
+        <div class="form-group">
+          <label>Education</label>
+          <div id="education-fields">
+            <input
+              type="text"
+              class="form-education"
+              placeholder="Enter education details"
+              required />
+          </div>
+          <button
+            type="button"
+            id="add-education"
+            class="add-button">
+            Add Another Education
+          </button>
+        </div>
+
+        <!-- Work Experience -->
+        <div class="form-group">
+          <label>Work Experience</label>
+          <div id="experience-fields">
+            <input
+              type="text"
+              class="form-experience"
+              placeholder="Enter work experience"
+              required />
+          </div>
+          <button
+            type="button"
+            id="add-experience"
+            class="add-button">
+            Add Another Experience
+          </button>
+        </div>
+
+        <!-- Skills -->
+        <div class="form-group">
+          <label>Skills</label>
+          <div id="skills-fields">
+            <input
+              type="text"
+              class="form-skills"
+              placeholder="Enter skill"
+              required />
+          </div>
+          <button
+            type="button"
+            id="add-skill"
+            class="add-button">
+            Add Another Skill
+          </button>
+        </div>
+
+        <button type="submit" class="btn-submit">
+          Generate Resume
+        </button>
+      </form>
+    </section>
 
     <script src="app.js"></script>
   </body>

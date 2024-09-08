@@ -6,6 +6,7 @@ body {
   color: #333;
 }
 
+/* Resume Container */
 .resume-container {
   width: 60%;
   margin: 0 auto;
@@ -33,6 +34,7 @@ section {
   margin-bottom: 30px;
 }
 
+/* Personal Info Section */
 .personal-info {
   text-align: center;
   margin-bottom: 40px;
@@ -50,6 +52,7 @@ section {
   color: #555;
 }
 
+/* Unordered Lists */
 ul {
   list-style: none;
   padding: 0;
@@ -65,6 +68,7 @@ ul li:last-child {
   border-bottom: none;
 }
 
+/* Buttons */
 button {
   padding: 8px 20px;
   background-color: #007bff;
@@ -76,6 +80,11 @@ button {
   transition: background-color 0.3s ease;
 }
 
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Social Links */
 .social-links {
   margin-top: 15px;
 }
@@ -92,12 +101,110 @@ button {
   color: #0056b3;
 }
 
-button:hover {
+/* Form Section */
+.form-section {
+  background-color: #f9f9f9;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 60%;
+  margin: 30px auto;
+}
+
+/* Form Group Styling */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group textarea {
+  width: 95%;
+  padding: 12px 15px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  font-size: 16px;
+  color: #333;
+  transition: border-color 0.3s ease;
+}
+
+/* Textarea Styling */
+.form-group textarea {
+  resize: vertical;
+  height: 100px;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+}
+
+/* Submit Button */
+.btn-submit {
+  display: block;
+  width: 100%;
+  padding: 12px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.btn-submit:hover {
   background-color: #0056b3;
 }
 
+.add-button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.add-button:hover {
+  background-color: #218838;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
-  .resume-container {
+  .resume-container,
+  .form-section {
     width: 90%;
     padding: 20px;
   }
@@ -108,5 +215,14 @@ button:hover {
 
   h2 {
     font-size: 22px;
+  }
+
+  .btn-submit {
+    font-size: 14px;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    font-size: 14px;
   }
 }

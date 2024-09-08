@@ -76,6 +76,22 @@ button {
   transition: background-color 0.3s ease;
 }
 
+.social-links {
+  margin-top: 15px;
+}
+
+.social-links a {
+  text-decoration: none;
+  color: #007bff;
+  margin: 0 10px;
+  font-size: 16px;
+  transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+  color: #0056b3;
+}
+
 button:hover {
   background-color: #0056b3;
 }

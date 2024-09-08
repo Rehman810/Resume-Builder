@@ -15,6 +15,23 @@
       </button>
     </header>
 
+    <section
+      id="resume-actions"
+      style="
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+      ">
+      <button
+        id="share-resume"
+        style="margin-right: 10px">
+        Share Resume
+      </button>
+      <button id="download-resume">
+        Download as PDF
+      </button>
+    </section>
+
     <div
       class="resume-container"
       id="resume-container">
@@ -215,6 +232,8 @@
         </button>
       </form>
     </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
     <script src="app.js"></script>
   </body>

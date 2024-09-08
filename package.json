@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "@types/html2canvas": "^1.0.0",
+    "jspdf": "^2.5.1"
+  },
+  "devDependencies": {
+    "@types/jspdf": "^2.0.0"
+  }
+}

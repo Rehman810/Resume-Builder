@@ -228,3 +228,226 @@ resumeForm.addEventListener(
       "Create Resume";
   }
 );
+
+interface ResumeData {
+  name: string;
+  contact: string;
+  github: string;
+  linkedin: string;
+  portfolio: string;
+  education: string[];
+  workExperience: string[];
+  skills: string[];
+}
+
+const { jsPDF } = window as any;
+
+const shareResumeButton = document.getElementById(
+  "share-resume"
+) as HTMLButtonElement;
+const downloadResumeButton =
+  document.getElementById(
+    "download-resume"
+  ) as HTMLButtonElement;
+
+// Toggle visibility of resume actions
+function toggleResumeActions(
+  show: boolean
+): void {
+  const actions = document.getElementById(
+    "resume-actions"
+  );
+  if (actions) {
+    actions.style.display = show
+      ? "block"
+      : "none";
+  }
+}
+
+function generateUniqueId(): string {
+  return (
+    "resume-" +
+    Math.random().toString(36).substr(2, 9)
+  );
+}
+
+function getResumeData(): ResumeData {
+  const educationList: string[] = [];
+  const workExperienceList: string[] = [];
+  const skillsList: string[] = [];
+
+  document
+    .querySelectorAll(".education ul li")
+    .forEach((li) => {
+      if (li instanceof HTMLLIElement) {
+        educationList.push(li.textContent || "");
+      }
+    });
+
+  document
+    .querySelectorAll(".work-experience ul li")
+    .forEach((li) => {
+      if (li instanceof HTMLLIElement) {
+        workExperienceList.push(
+          li.textContent || ""
+        );
+      }
+    });
+
+  document
+    .querySelectorAll("#skills-list li")
+    .forEach((li) => {
+      if (li instanceof HTMLLIElement) {
+        skillsList.push(li.textContent || "");
+      }
+    });
+
+  return {
+    name:
+      (
+        document.getElementById(
+          "name"
+        ) as HTMLElement
+      ).textContent || "",
+    contact:
+      (
+        document.getElementById(
+          "contact"
+        ) as HTMLElement
+      ).textContent || "",
+    github: (
+      document.getElementById(
+        "github-link"
+      ) as HTMLAnchorElement
+    ).href,
+    linkedin: (
+      document.getElementById(
+        "linkedin-link"
+      ) as HTMLAnchorElement
+    ).href,
+    portfolio: (
+      document.getElementById(
+        "portfolio-link"
+      ) as HTMLAnchorElement
+    ).href,
+    education: educationList,
+    workExperience: workExperienceList,
+    skills: skillsList,
+  };
+}
+
+function createShareableUrl(
+  userName: any
+): string {
+  const baseUrl =
+    window.location.href.split("?")[0];
+  return `${baseUrl}/${userName}/resume`;
+}
+
+// Handle sharing resume
+shareResumeButton.addEventListener(
+  "click",
+  () => {
+    const uniqueId = generateUniqueId();
+    const resumeData = getResumeData();
+    const userName =
+      document.getElementById(
+        "name"
+      )?.textContent;
+
+    // Save to localStorage as a temporary solution
+    localStorage.setItem(
+      uniqueId,
+      JSON.stringify(resumeData)
+    );
+
+    const shareableUrl =
+      createShareableUrl(userName);
+    prompt("Share this URL:", shareableUrl);
+  }
+);
+
+// Handle downloading resume as PDF
+downloadResumeButton.addEventListener(
+  "click",
+  () => {
+    const doc = new jsPDF();
+    doc.text(
+      (
+        document.getElementById(
+          "resume-container"
+        ) as HTMLElement
+      ).innerText,
+      10,
+      10
+    );
+    doc.save("resume.pdf");
+  }
+);
+
+// Load resume data based on URL parameter
+function loadResumeFromUrl(): void {
+  const urlParams = new URLSearchParams(
+    window.location.search
+  );
+  const resumeId = urlParams.get("resume");
+
+  if (resumeId) {
+    const resumeData =
+      localStorage.getItem(resumeId);
+    if (resumeData) {
+      const data: ResumeData =
+        JSON.parse(resumeData);
+      (
+        document.getElementById(
+          "name"
+        ) as HTMLElement
+      ).textContent = data.name;
+      (
+        document.getElementById(
+          "contact"
+        ) as HTMLElement
+      ).textContent = data.contact;
+      (
+        document.getElementById(
+          "github-link"
+        ) as HTMLAnchorElement
+      ).href = data.github;
+      (
+        document.getElementById(
+          "linkedin-link"
+        ) as HTMLAnchorElement
+      ).href = data.linkedin;
+      (
+        document.getElementById(
+          "portfolio-link"
+        ) as HTMLAnchorElement
+      ).href = data.portfolio;
+
+      document.querySelector(
+        ".education ul"
+      )!.innerHTML = data.education
+        .map((item) => `<li>${item}</li>`)
+        .join("");
+      document.querySelector(
+        ".work-experience ul"
+      )!.innerHTML = data.workExperience
+        .map((item) => `<li>${item}</li>`)
+        .join("");
+      (
+        document.getElementById(
+          "skills-list"
+        ) as HTMLElement
+      ).innerHTML = data.skills
+        .map((skill) => `<li>${skill}</li>`)
+        .join("");
+
+      toggleResumeActions(true);
+    } else {
+      alert("Resume not found");
+    }
+  }
+}
+
+// Load resume data on page load if URL contains resume ID
+window.onload = loadResumeFromUrl;

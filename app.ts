@@ -341,7 +341,7 @@ function createShareableUrl(
 ): string {
   const baseUrl =
     window.location.href.split("?")[0];
-  return `${baseUrl}/${userName}/resume`;
+  return `${baseUrl}${userName}/resume`;
 }
 
 // Handle sharing resume
